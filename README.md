@@ -15,11 +15,11 @@ The current repository is being developed as a personal AI engineering project, 
 *  Citation-aware responses
 *  Evidence and claim verification
 *  Research quality evaluation
-*  Structured research reports
+*  Structured research reportss
 
 ###  Vision
 
-The goal of ResearchPilot is to move beyond a simple AI chatbot toward a research workflow where answers can be **investigated, supported by evidence, and critically checked**.
+The goal of ResearchPilot is to move beyond a simple AI chatbot toward a research workflow where answers can be **investigated, supported by evidence, and critically checked**. 
 
 ---
 
