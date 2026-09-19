@@ -15,7 +15,7 @@ The current repository is being developed as a personal AI engineering project, 
 *  Citation-aware responses
 *  Evidence and claim verification
 *  Research quality evaluation
-*  Structured research reportss
+*  Structured research reports
 
 ###  Vision
 
