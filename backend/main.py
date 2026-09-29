@@ -1,11 +1,27 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from backend.retrieval import search_documents
+from backend.retrieval import retrieve_documents
 from backend.llm import generate_answer
 
 
-app = FastAPI(title="ResearchPilot")
+app = FastAPI()
+
+
+# Allow the frontend to communicate with the backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5174",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class ResearchRequest(BaseModel):
@@ -21,38 +37,17 @@ def home():
 
 @app.post("/research")
 def research(request: ResearchRequest):
-    results = search_documents(request.question)
 
-    if not results:
-        return {
-            "answer": "I could not find any relevant documents.",
-            "sources": [],
-        }
-
-    context_parts = []
-
-    for result in results:
-        context_parts.append(
-            f"Source: {result['filename']}\n"
-            f"{result['text']}"
-        )
-
-    context = "\n\n".join(context_parts)
+    retrieved_documents = retrieve_documents(
+        request.question
+    )
 
     answer = generate_answer(
         request.question,
-        context,
+        retrieved_documents
     )
-
-    sources = [
-        {
-            "filename": result["filename"],
-            "score": result["score"],
-        }
-        for result in results
-    ]
 
     return {
         "answer": answer,
-        "sources": sources,
+        "sources": retrieved_documents
     }
