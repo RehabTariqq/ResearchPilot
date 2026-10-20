@@ -28,6 +28,7 @@ The goal of ResearchPilot is to move beyond a simple AI chatbot toward a researc
 ResearchPilot is based on the open-source **RAG Research Agent Template** by LangChain.
 
 The upstream project provides the foundation for the indexing, retrieval, and research-agent architecture. This repository is being extended and customized as an independent learning and engineering project.
+ResearchPilot is designed to explore retrieval-augmented generation (RAG) through a simple, practical implementation.
 
 Original project:
 https://github.com/langchain-ai/rag-research-agent-template
